@@ -1,18 +1,9 @@
 # Download and Install Prerequisites
 
-apt update
-apt install cmake -y
-apt install libhwloc-dev -y
-apt install pkg-config -y
-apt install liblzma-dev -y
-apt install libpcre3-dev libpcre3 -y
-apt install libssl-dev -y
-apt install libdumbnet-dev -y
-apt install libpcap-dev -y
+apt update && apt install -y cmake libhwloc-dev pkg-config liblzma-dev libpcre3-dev libpcre3 libssl-dev libdumbnet-dev libpcap-dev
 
 # Download luajit
-git clone https://luajit.org/git/luajit.git
-cd luajit
+git clone https://luajit.org/git/luajit.git && cd luajit
 make && make install
 
 ########################################################
@@ -20,14 +11,12 @@ make && make install
 # Download Snort3 and libdaq
 
 mkdir /opt/snort && cd /opt/snort
-wget https://www.snort.org/downloads/snortplus/libdaq-3.0.13.tar.gz
-wget https://www.snort.org/downloads/snortplus/snort3-3.1.77.0.tar.gz
+wget https://www.snort.org/downloads/snortplus/libdaq-3.0.13.tar.gz && wget https://www.snort.org/downloads/snortplus/snort3-3.1.77.0.tar.gz
 tar -xf libdaq-3.0.13.tar.gz && rm libdaq-3.0.13.tar.gz
 tar -xf snort3-3.1.77.0.tar.gz && rm snort3-3.1.77.0.tar.gz
 cd libdaq-3.0.13
 ./bootstrap && ./configure && make && make install
-export my_path=/opt/snort/snort3-3.1.77.0
-cd $my_path
+export my_path=/opt/snort/snort3-3.1.77.0 && cd $my_path
 ./configure_cmake.sh --prefix=$my_path
 cd build
 make -j $(nproc) && make install
