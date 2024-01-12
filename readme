@@ -1,0 +1,6 @@
+# Go to root mode
+# Download snort3_installation_script.
+# run the below command in the directory where the script is installed:
+chmod +x snort3_installation_script
+# then run the script
+./snort3_installation_script
