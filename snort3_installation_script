@@ -17,8 +17,7 @@ tar -xf snort3-3.1.77.0.tar.gz && rm snort3-3.1.77.0.tar.gz
 cd libdaq-3.0.13
 ./bootstrap && ./configure && make && make install
 export my_path=/opt/snort/snort3-3.1.77.0 && cd $my_path
-./configure_cmake.sh --prefix=$my_path
-cd build
+./configure_cmake.sh --prefix=$my_path && cd build
 make -j $(nproc) && make install
 ln -s $my_path/conf $my_path/etc
 ldconfig -v
